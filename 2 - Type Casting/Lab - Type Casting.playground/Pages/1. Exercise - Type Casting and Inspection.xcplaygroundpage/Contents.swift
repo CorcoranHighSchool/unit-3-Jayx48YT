@@ -51,6 +51,7 @@ for value in myLookup.values{
             total += 2
         }else{
             total -= 3
+    
         }
     }
 }
@@ -61,12 +62,15 @@ print(total)
 var total2: Double = 0
 
 for value in myLookup.values{
+    //ints
     if let number = value as? Int{
         total2 += Double(number)
     }
+    //Doubles
     else if let number = value as? Double{
         total2 += number
     }
+    //Strings
     else if let string = value as? String{
         if let validNumber = Double(string){
             total2 += validNumber
