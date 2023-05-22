@@ -9,40 +9,43 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
-    //Outlets
+    //Outlets label
     @IBOutlet weak var questionLabel: UILabel!
     
+    //Single stack View outlets
     @IBOutlet weak var singleStackView: UIStackView!
     @IBOutlet weak var singleButton1: UIButton!
     @IBOutlet weak var singleButton2: UIButton!
     @IBOutlet weak var singleButton3: UIButton!
     @IBOutlet weak var singleButton4: UIButton!
 
-    
+    //Multiple Stack View outlets
     @IBOutlet weak var multipleStackView: UIStackView!
     @IBOutlet weak var multiLabel1: UILabel!
     @IBOutlet weak var multiLabel2: UILabel!
     @IBOutlet weak var multiLabel3: UILabel!
     @IBOutlet weak var multiLabel4: UILabel!
     
-    
+    //Multiple switch view outlets
     @IBOutlet weak var multiSwitch1: UISwitch!
     @IBOutlet weak var multiSwitch2: UISwitch!
     @IBOutlet weak var multiSwitch3: UISwitch!
     @IBOutlet weak var multiSwitch4: UISwitch!
     
+    //Ranged stack View outlets
     @IBOutlet weak var rangedStackView: UIStackView!
     @IBOutlet weak var rangedLabel1: UILabel!
     @IBOutlet weak var rangedLabel2: UILabel!
     @IBOutlet weak var rangedSlider: UISlider!
     
-
+//Question Progress view
     @IBOutlet weak var progressView: UIProgressView!
     
     //Properties 
-    var questionIndex = 0
+    var questionIndex = 0 //The index of the current question
     
     var answersChosen: [Answer] = []
+    
     
     var questions: [Question] = [
         Question(
@@ -89,14 +92,17 @@ class QuestionViewController: UIViewController {
         multipleStackView.isHidden = true
         rangedStackView.isHidden = true
         
+        //set the current question
         let currentQuestion = questions[questionIndex]
         let currentAnswers = currentQuestion.answers
         let totalProgress = Float(questionIndex) / Float(questions.count)
         
+        //Sset the title
         navigationItem.title = "Question #\(questionIndex + 1)"
         questionLabel.text = currentQuestion.text
         progressView.setProgress(totalProgress, animated: true)
         
+        //active the view for this type
         switch currentQuestion.type {
         case .single:
             updateSingleStack(using: currentAnswers)
